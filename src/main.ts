@@ -9,7 +9,7 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Ruxsat etilgan HTTP metodlar
     credentials: true, // Agar cookie kerak bo'lsa
   });
-  const host = "192.168.32.7"
-  await app.listen(process.env.PORT ?? 3000,host);
+
+  await app.listen(process.env.PORT ?? 3000,);
 }
 bootstrap();

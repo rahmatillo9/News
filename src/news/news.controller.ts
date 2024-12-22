@@ -10,24 +10,10 @@ import { Role } from 'src/validator/users.validator';
 
 
 @Controller('News')
-// @UseGuards(JwtAuthGuard, RolesGuard)
+
 export class NewsController {
   constructor(private readonly NewsService: NewsService) {}
   
-
-  @Post()
-  async create(@Body() createNewsDto: newsDto): Promise<News> {
-    return this.NewsService.create(createNewsDto);
-  }
-
-
-  @Put(':id')
-  async update(
-    @Param('id') id: number,
-    @Body() updateNewsDto: UpdateNewsDto,
-  ): Promise<News> {
-    return this.NewsService.update(id, updateNewsDto);
-  }
 
   @Get()
   async findAll(): Promise<News[]> {
@@ -39,7 +25,27 @@ export class NewsController {
     return this.NewsService.findOne(id);
   }
   
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+
+
+  @Roles(Role.Admin, Role.Customer)
+  @Post()
+  async create(@Body() createNewsDto: newsDto): Promise<News> {
+    return this.NewsService.create(createNewsDto);
+  }
+
+
+  @Roles(Role.Admin, Role.Customer)
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() updateNewsDto: UpdateNewsDto,
+  ): Promise<News> {
+    return this.NewsService.update(id, updateNewsDto);
+  }
   
+      @Roles(Role.Admin, Role.Customer)
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<void>{
     return this.NewsService.deleteNews(id);

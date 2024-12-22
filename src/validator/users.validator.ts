@@ -13,7 +13,7 @@ export class CreateUsersDto{
    
     @IsEnum(Role)
     @IsNotEmpty()
-    role: string;
+    role: Role;
 
     @IsEmail()
     email: string;
@@ -33,7 +33,7 @@ export class UpdateUserDto {
   
     @IsOptional()
     @IsEnum(Role)  
-    role?: string;
+    role?: Role;
 
   
     @IsOptional()

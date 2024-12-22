@@ -8,27 +8,29 @@ import { JwtAuthGuard } from 'src/authguard/jwt-auth.guard';
 
 @Controller('users')
 
-// @UseGuards(JwtAuthGuard, RolesGuard)
+
 export class UsersController {
 
     constructor(private readonly usersServise: UsersService){}
     @Post()
-
     async createUser(@Body() createUserDto: CreateUsersDto): Promise<User>{
         return this.usersServise.createUser(
             createUserDto.Lastname,
             createUserDto.email,
             createUserDto.role,
             createUserDto.password,
-
+            
         );
+        
     }
    
 
 
+    
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
 
-    // @Roles(Role.Admin)
+    @Roles(Role.Admin)
     @Get()
     async findAll(): Promise<User[]>{
           
@@ -44,7 +46,7 @@ async finbyEmail(@Param('email') email: string): Promise<User>{
 }
 
 
-@Roles(Role.Admin)
+@Roles(Role.Admin, Role.Customer)
     @Get(':id')
     async findOne(@Param('id') id: number): Promise<User> {
       return this.usersServise.findOne(id);
@@ -52,14 +54,14 @@ async finbyEmail(@Param('email') email: string): Promise<User>{
 
 
 
-    @Roles(Role.Admin)
+    @Roles(Role.Admin, Role.Customer)
     @Patch(':id')
     async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto): Promise<User> {
       const [_, [updatedUser]] = await this.usersServise.updateUser(id, updateUserDto);
       return updatedUser;
     }
     
-    @Roles(Role.Admin)
+    @Roles(Role.Admin, Role.Customer)
   @Delete(':id')
   async deleteUser(@Param('id') id: number): Promise<void> {
     return this.usersServise.deleteUser(id);

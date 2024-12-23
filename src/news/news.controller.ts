@@ -25,7 +25,10 @@ export class NewsController {
     return this.NewsService.findOne(id);
   }
   
-
+  @Get('/category/:catigory')
+async finbyCategory(@Param('catigory') catigory: string): Promise<News[]>{
+  return this.NewsService.getByCategory(catigory)
+}
   @UseGuards(JwtAuthGuard, RolesGuard)
 
 

@@ -59,6 +59,33 @@ export class NewsService {
     return news;
   }
 
+  async getByCategory(catigory: string): Promise<News[]> {
+    try {
+      const news = await this.newsModel.findAll({
+        where: { catigory }, 
+        include: [
+          {
+            model: User,
+            as: 'user', 
+            attributes: ['Lastname'], 
+          },
+        ],
+      });
+  
+
+      if (!news || news.length === 0) {
+        throw new Error('No news found for this category');
+      }
+  
+      return news; 
+    } catch (error) {
+      console.error(error);
+      throw new Error('Failed to fetch news by category');
+    }
+  }
+  
+  
+
   async deleteNews(id: number): Promise<void> {
     const news = await this.newsModel.findOne({ where: { id } });
     if (!news) {

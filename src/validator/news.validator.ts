@@ -13,6 +13,10 @@ export class newsDto {
   @IsUrl()
   imageUrl: string;
 
+ @IsString()
+ @IsNotEmpty()
+ catigory: string;
+
   @IsNumber()
   @IsNotEmpty()
   authorId: number;
@@ -30,6 +34,10 @@ export class UpdateNewsDto {
   @IsOptional()
   @IsUrl()
   imageUrl: string;
+
+  @IsOptional()
+  @IsString()
+  catigory: string;
 
   @IsOptional()
   @IsNumber()

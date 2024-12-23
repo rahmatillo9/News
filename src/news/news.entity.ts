@@ -23,8 +23,13 @@ export class News extends Model<News>{
         type: DataType.STRING,
         allowNull: true,
     })
-    imageUrl!: string
+    imageUrl!: string;
     
+    @Column({
+        type: DataType.STRING,
+        allowNull: false
+    })
+    catigory: string
 
     @ForeignKey(() => User) 
     @Column({

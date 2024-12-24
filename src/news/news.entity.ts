@@ -29,7 +29,7 @@ export class News extends Model<News>{
         type: DataType.STRING,
         allowNull: false
     })
-    catigory: string
+    category: string
 
     @ForeignKey(() => User) 
     @Column({

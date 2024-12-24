@@ -15,7 +15,7 @@ export class newsDto {
 
  @IsString()
  @IsNotEmpty()
- catigory: string;
+ category: string;
 
   @IsNumber()
   @IsNotEmpty()
@@ -37,7 +37,7 @@ export class UpdateNewsDto {
 
   @IsOptional()
   @IsString()
-  catigory: string;
+  category: string;
 
   @IsOptional()
   @IsNumber()

@@ -6,7 +6,7 @@ import { RolesGuard } from 'src/validator/RolesGuard/Roluse.guard';
 import { Roles } from 'src/validator/RolesGuard/Roles';
 import { JwtAuthGuard } from 'src/authguard/jwt-auth.guard';
 
-@Controller('users')
+@Controller('')
 
 
 export class UsersController {

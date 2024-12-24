@@ -59,10 +59,10 @@ export class NewsService {
     return news;
   }
 
-  async getByCategory(catigory: string): Promise<News[]> {
+  async getByCategory(category: string): Promise<News[]> {
     try {
       const news = await this.newsModel.findAll({
-        where: { catigory }, 
+        where: { category }, 
         include: [
           {
             model: User,

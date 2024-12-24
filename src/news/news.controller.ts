@@ -1,8 +1,8 @@
 import { Controller, Post, Body, Put, Param, Get, Delete, UseGuards } from '@nestjs/common';
-import { NewsService } from './News.service';
+import { NewsService } from './news.service';
 import { newsDto } from 'src/validator/news.validator';
 import { UpdateNewsDto } from 'src/validator/news.validator';
-import { News } from './News.entity';
+import { News } from './news.entity';
 import { Roles } from 'src/validator/RolesGuard/Roles';
 import { JwtAuthGuard } from 'src/authguard/jwt-auth.guard';
 import { RolesGuard } from 'src/validator/RolesGuard/Roluse.guard';

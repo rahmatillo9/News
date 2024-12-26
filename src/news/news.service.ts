@@ -39,6 +39,19 @@ export class NewsService {
     });
   }
 
+  async findByUserId(authorId: number): Promise<News[]> {
+    return await this.newsModel.findAll({
+      where: { authorId },
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['Lastname'],
+        },
+      ],
+    });
+  }
+  
 
   async findOne(id: number): Promise<News> {
     const news = await this.newsModel.findOne({

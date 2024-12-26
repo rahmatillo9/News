@@ -29,6 +29,11 @@ export class NewsController {
 async finbyCategory(@Param('catigory') catigory: string): Promise<News[]>{
   return this.NewsService.getByCategory(catigory)
 }
+
+@Get('/author/:authorId')
+async finbyAuthor(@Param('authorId') authorId: number): Promise<News[]>{
+  return this.NewsService.findByUserId(authorId)
+}
   @UseGuards(JwtAuthGuard, RolesGuard)
 
 
@@ -47,7 +52,9 @@ async finbyCategory(@Param('catigory') catigory: string): Promise<News[]>{
   ): Promise<News> {
     return this.NewsService.update(id, updateNewsDto);
   }
-  
+   
+
+
       @Roles(Role.Admin, Role.Customer)
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<void>{

@@ -1,5 +1,6 @@
-import {Column, DataType,  HasMany,  Model,  Table } from "sequelize-typescript";
+import {Column, DataType,  HasMany,  HasOne,  Model,  Table } from "sequelize-typescript";
 import { News } from "src/news/news.entity";
+import { UserProfile } from "src/user_profiles/user_profile.entity";
 
 
 
@@ -37,6 +38,8 @@ export class User extends Model<User>{
      
   @HasMany(() => News)
   News!: News[];
-
+  
+  @HasOne(() => UserProfile)
+  profile: UserProfile;
 
 }

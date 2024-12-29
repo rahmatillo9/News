@@ -26,7 +26,10 @@ export class UsersController {
    
 
 
-    
+    @Get('name/:Lastname')
+    async findByLastname(@Param('Lastname') Lastname: string): Promise<User | null> {
+      return this.usersServise.findByLastname(Lastname);
+    }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
 

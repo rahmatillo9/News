@@ -42,6 +42,10 @@ export class UsersService {
     });
   }
   
+  async findByLastname(Lastname: string): Promise<User | null> {
+    return this.userModel.findOne({ where: { Lastname }});
+  }
+
   async findByEmail(email: string): Promise<User | null> {
     console.log('findByEmail service', email)
     return this.userModel.findOne({ where: { email } }); 

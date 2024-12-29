@@ -5,11 +5,13 @@ import * as dotenv from "dotenv";
 import { UserModule } from './users/users.module';
 import { AuthModule } from './authguard/JwtModule ';
 import { NewsModule } from './news/news.module';
+import { UserProfileModule } from './user_profiles/user_profile.module';
 
 dotenv.config();
 @Module({
   imports: [
     NewsModule,
+    UserProfileModule,
     UserModule,
     AuthModule,
     SequelizeModule.forRoot({

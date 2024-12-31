@@ -26,6 +26,25 @@ export class UserProfileService {
         });
     }
 
+    
+    async findOneByUserId(user_id: number): Promise<UserProfile>{
+        const userProfile = await this.userProfileModel.findOne({
+            where: {user_id},
+            include: [
+                {
+                    model: User,
+                    as: 'user',
+                    attributes: ['Lastname'],
+                },
+            ],
+        });
+        if(!userProfile){
+            throw new NotFoundException(`User Profile ID: ${user_id} not found`);
+        }
+        return userProfile;
+    }
+
+
     async findOne(id: number): Promise<UserProfile>{
         const userProfile = await this.userProfileModel.findOne({
             where: {id},

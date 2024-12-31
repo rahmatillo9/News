@@ -19,6 +19,34 @@ export class UserProfileController {
     return this.userProfileService.findAll();
   }
 
+@Get('user/:user_id')
+async getProfileUserId(@Param('user_id') user_id: string) {
+    const parsedUserId = parseInt(user_id, 10);
+    if (isNaN(parsedUserId)) {
+        return {
+            message: 'Invalid user_id value',
+            error: 'User ID must be a number',
+        };
+    }
+
+    try {
+        const userProfile = await this.userProfileService.findOneByUserId(parsedUserId);
+        if (!userProfile) {
+            return {
+                message: 'Profile not found',
+                error: 'User profile not found',
+            };
+        }
+        return userProfile;
+    } catch (error) {
+        return {
+            message: 'Error fetching profile',
+            error: error.message,
+        };
+    }
+}
+
+
   @Get(':id')
   async getProfileById(@Param('id') id: number) {
     try {
